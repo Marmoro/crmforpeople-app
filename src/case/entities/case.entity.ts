@@ -1,9 +1,10 @@
+import { Organization } from '../../organization/entities/organization.entity';
 import { User } from './../../user/entities/user.entity';
-import { Organization } from 'src/organization/entities/organization.entity';
 import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -44,11 +45,14 @@ export class Case {
   @Column()
   content: string;
 
-  @OneToOne(() => Organization, (organization) => organization.id)
+  @ManyToOne(() => Organization)
   @JoinColumn()
   organization: number;
 
-  @OneToOne(() => User)
+  @ManyToOne(() => User)
   @JoinColumn()
-  user: User;
+  user: number;
+
+  @Column({type: 'timestamp', default: () => "CURRENT_TIMESTAMP()" })
+  timestamp: Date;
 }

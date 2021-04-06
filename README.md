@@ -41,6 +41,9 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
+# debug mode
+$ node_modules/.bin/nest start --debug 0.0.0.0:9229 --watch
+
 # production mode
 $ npm run start:prod
 ```
