@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+
+  mariadb:
+    container_name: local-mariadb
+    image: mariadb
+    restart: always
+    command: --lower_case_table_names=1
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+
+  redis:
+    container_name: local-redis
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
