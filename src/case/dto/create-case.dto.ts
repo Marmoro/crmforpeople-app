@@ -10,4 +10,6 @@ export class CreateCaseDto {
 
   @ApiProperty()
   organization: number;
+
+  user: number;
 }

@@ -64,8 +64,6 @@ export class UserController {
 
   @Get('logOut')
   logOut(@Request() req, @Res() res: Response) {
-    let result: Payload;
-
     if (!req.session.passport) {
       throw new HttpException('User not logged in', HttpStatus.UNAUTHORIZED);
     }
@@ -73,9 +71,7 @@ export class UserController {
     req.logout();
     req.session.destroy();
     req.session = null;
-    result.statusCode = 20;
-    result.message = 'Success';
 
-    return result;
+    return true;
   }
 }

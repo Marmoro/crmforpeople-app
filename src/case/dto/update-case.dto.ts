@@ -1,4 +1,7 @@
-import { PartialType } from '@nestjs/mapped-types';
+import { OmitType } from '@nestjs/swagger';
 import { CreateCaseDto } from './create-case.dto';
 
-export class UpdateCaseDto extends PartialType(CreateCaseDto) {}
+export class UpdateCaseDto extends OmitType(CreateCaseDto, [
+  'caseType',
+  'organization',
+] as const) {}

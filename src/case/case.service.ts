@@ -2,7 +2,7 @@ import { Case } from './entities/case.entity';
 import { Injectable } from '@nestjs/common';
 import { CreateCaseDto } from './dto/create-case.dto';
 import { UpdateCaseDto } from './dto/update-case.dto';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -20,12 +20,22 @@ export class CaseService {
     return await this.caseRepository.find();
   }
 
+  async findAllByUserId(userId: number): Promise<Case[]> {
+    return await this.caseRepository.find({ where: { user: userId } });
+  }
+
   async findOne(id: number): Promise<Case> {
     return await this.caseRepository.findOne(id);
   }
 
-  update(id: number, updateCaseDto: UpdateCaseDto) {
-    return `This action updates a #${id} case`;
+  async findOneByUserId(id: number, userId: number): Promise<Case> {
+    return await this.caseRepository.findOne({
+      where: { id: id, user: userId },
+    });
+  }
+
+  async update(id: number, dto: UpdateCaseDto): Promise<UpdateResult> {
+    return await this.caseRepository.update({ id }, dto);
   }
 
   remove(id: number) {

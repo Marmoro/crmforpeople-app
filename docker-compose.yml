@@ -9,6 +9,7 @@ services:
     command: --lower_case_table_names=1
     environment:
       MYSQL_ROOT_PASSWORD: root
+      #TZ: Asia/Dubai
     ports:
       - 3306:3306
     volumes:
