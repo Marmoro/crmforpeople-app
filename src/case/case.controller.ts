@@ -38,10 +38,11 @@ export class CaseController {
     return this.caseService.findOneByUserId(id, req.user.id);
   }
 
-  @UseGuards(AuthenticatedGuard)
+  // @UseGuards(AuthenticatedGuard)
   @Post()
   create(@Body() createCaseDto: CreateCaseDto, @Req() req) {
-    createCaseDto.user = req.user.id;
+    // createCaseDto.user = req.user.id;
+    createCaseDto.user = 1;
     return this.caseService.create(createCaseDto);
   }
 

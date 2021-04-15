@@ -16,7 +16,7 @@ export class OrganizationService {
   }
 
   async findAll() {
-    return await this.organizationRepository.find();
+    return await this.organizationRepository.find({ where: { active: 1 } });
   }
 
   async findOne(id: number): Promise<Organization> {
