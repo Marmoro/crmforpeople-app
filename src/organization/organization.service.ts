@@ -16,15 +16,15 @@ export class OrganizationService {
   }
 
   async findAll() {
-    return await this.organizationRepository.find();
+    return await this.organizationRepository.find({ where: { active: 1 } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} organization`;
+  async findOne(id: number): Promise<Organization> {
+    return await this.organizationRepository.findOne(id);
   }
 
-  update(id: number, updateOrganizationDto: UpdateOrganizationDto) {
-    return `This action updates a #${id} organization`;
+  async update(id: number, updateOrganizationDto: UpdateOrganizationDto) {
+    return await this.organizationRepository.update(id, updateOrganizationDto);
   }
 
   remove(id: number) {

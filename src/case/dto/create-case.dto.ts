@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsDefined } from 'class-validator';
 import { CaseType } from '../entities/case.entity';
 
 export class CreateCaseDto {
@@ -8,6 +9,9 @@ export class CreateCaseDto {
   @ApiProperty({ default: CaseType.INQUIRY })
   caseType: CaseType;
 
+  @IsDefined()
   @ApiProperty()
   organization: number;
+
+  user: number;
 }
