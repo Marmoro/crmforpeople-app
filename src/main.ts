@@ -27,8 +27,8 @@ async function bootstrap() {
   app.use(
     session({
       store: new RedisStore({
-        host: 'localhost',
-        port: 6379,
+        host:  process.env.REDIS_HOST,
+        port: parseInt(process.env.REDIS_PORT),
         client: client,
         ttl: 999999,
       }),
